@@ -8,7 +8,7 @@ describe("Reqres", function() {
 
         cy.wait('@getUsers');
 
-        // Assert på de mockede data – tilpas selectors til dit UI
+        //Assert the mocked data
         cy.get('.user').should('have.length', 2);
         cy.contains('George Bluth').should('exist');
         cy.contains('Janet Weaver').should('exist');

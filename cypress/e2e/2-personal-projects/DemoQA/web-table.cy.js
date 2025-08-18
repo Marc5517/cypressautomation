@@ -30,7 +30,7 @@ describe('Web table manipulation', function() {
             cy.get('button[id="submit"]').click()
 
             //Assert that a new row has been added, and it contains the info that was added earlier
-            cy.get('div[class="rt-tbody"] .rt-tr-group').filter(function(index, row) {
+            cy.get('div[class="rt-tbody"] .rt-tr-group').filter(function(_, row) {
                 const text = Cypress.$(row).text().trim()
                 return text.length > 0 && !text.includes('No rows found')
             })
@@ -84,7 +84,7 @@ describe('Web table manipulation', function() {
         cy.get('input[id="searchBox"]').type("Alden")
 
         //Assert that one row exists
-        cy.get('div[class="rt-tbody"] .rt-tr-group').filter(function(index, row) {
+        cy.get('div[class="rt-tbody"] .rt-tr-group').filter(function(_, row) {
             const text = Cypress.$(row).text().trim()
             return text.length > 0 && !text.includes('No rows found')
         })

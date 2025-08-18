@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 Cypress.on('uncaught:exception', (err, runnable) => {
-    // return false for at forhindre testfejl
+    // return false to prevent test failing
     return false;
   });
 
@@ -33,16 +33,15 @@ describe('Drag and drop', function() {
         cy.get('div[class="list-group-item list-group-item-action"]').eq(1)
         .should('have.text', 'Two')
         
-        //Drag two over One
+        //Drag two over One - How it should've been done in the code below:
         //cy.get('div[class="list-group-item list-group-item-action"]').eq(1)
         //.drag('div[class="list-group-item list-group-item-action"]:eq(0)', {force: true})
+        //But it couldn't be done the traditional way, since the UI is difficult for Cypress, so instead the sorting was simulated.
         cy.window().then(win => {
             const container = win.document.querySelector('div[class="vertical-list-container mt-4"]');
             const items = container.querySelectorAll('div[class="list-group-item list-group-item-action"]');
             container.insertBefore(items[1], items[0]);
         });
-
-        //cy.wait(5000)
 
         //Assert that Two is before One
         cy.get('div[class="list-group-item list-group-item-action"]').eq(0)

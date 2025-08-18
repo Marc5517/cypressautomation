@@ -109,7 +109,7 @@ describe('Web-table - advanced', function() {
         cy.get('input[id="searchBox"]').type("Cierra")
 
         //Assert that one row exists
-        cy.get('div[class="rt-tbody"] .rt-tr-group').filter(function(index, row) {
+        cy.get('div[class="rt-tbody"] .rt-tr-group').filter(function(_, row) {
             const text = Cypress.$(row).text().trim()
             return text.length > 0 && !text.includes('No rows found')
         })
@@ -148,7 +148,7 @@ describe('Web-table - advanced', function() {
 
             //Assert the new row is there
             cy.get('input[id="searchBox"]').clear()
-            cy.get('div[class="rt-tbody"] .rt-tr-group').filter(function(index, row) {
+            cy.get('div[class="rt-tbody"] .rt-tr-group').filter(function(_, row) {
                 const text = Cypress.$(row).text().trim()
                 return text.length > 0 && !text.includes('No rows found')
             })
