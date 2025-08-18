@@ -126,7 +126,7 @@ describe('Web-table - advanced', function() {
 
         //Clear the search field and assert that the other rows are there
         cy.get('input[id="searchBox"]').clear()
-        cy.get('div[class="rt-tbody"] .rt-tr-group').filter(function(index, row) {
+        cy.get('div[class="rt-tbody"] .rt-tr-group').filter(function(_, row) {
             const text = Cypress.$(row).text().trim()
             return text.length > 0 && !text.includes('No rows found')
         })
